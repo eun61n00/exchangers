@@ -30,7 +30,7 @@
             </h1>
             <ol class="breadcrumb">
                 <li><i class="fa fa-edit"></i> article</li>
-                <li class="active"><a href="${path}/article/paging/search/list"> list</a></li>
+                <li class="active"><a href="${pageContext.request.contextPath}/article/paging/search/list"> list</a></li>
             </ol>
         </section>
 
@@ -55,10 +55,10 @@
                             <c:forEach items="${articles}" var="article">
                                 <tr>
                                     <td>${article.articleNo}</td>
-                                        <%--<td><a href="${path}/article/read?articleNo=${article.articleNo}">${article.title}</a></td>--%>
-<%--                                    <td><a href="${path}/article/paging/read${pageMaker.makeQuery(pageMaker.criteria.page)}&articleNo=${article.articleNo}">${article.title}</a></td>--%>
+                                        <%--<td><a href="${pageContext.request.contextPath}/article/read?articleNo=${article.articleNo}">${article.title}</a></td>--%>
+<%--                                    <td><a href="${pageContext.request.contextPath}/article/paging/read${pageMaker.makeQuery(pageMaker.criteria.page)}&articleNo=${article.articleNo}">${article.title}</a></td>--%>
                                     <td>
-                                        <a href="${path}/article/paging/search/read${pageMaker.makeSearch(pageMaker.criteria.page)}&articleNo=${article.articleNo}">
+                                        <a href="${pageContext.request.contextPath}/article/paging/search/read${pageMaker.makeSearch(pageMaker.criteria.page)}&articleNo=${article.articleNo}">
                                                 ${article.title}
                                         </a>
                                     </td>
@@ -78,21 +78,21 @@
 <%--                            </form>--%>
 <%--                            <ul class="pagination">--%>
 <%--                                <c:if test="${pageMaker.prev}">--%>
-<%--                                    &lt;%&ndash;<li><a href="${path}/article/listPaging?page=${pageMaker.startPage - 1}">이전</a></li>&ndash;%&gt;--%>
-<%--                                    &lt;%&ndash;<li><a href="${path}/article/listPaging${pageMaker.makeQuery(pageMaker.startPage - 1)}">이전</a></li>&ndash;%&gt;--%>
+<%--                                    &lt;%&ndash;<li><a href="${pageContext.request.contextPath}/article/listPaging?page=${pageMaker.startPage - 1}">이전</a></li>&ndash;%&gt;--%>
+<%--                                    &lt;%&ndash;<li><a href="${pageContext.request.contextPath}/article/listPaging${pageMaker.makeQuery(pageMaker.startPage - 1)}">이전</a></li>&ndash;%&gt;--%>
 <%--                                    <li><a href="${pageMaker.startPage - 1}">이전</a></li>--%>
 <%--                                </c:if>--%>
 <%--                                <c:forEach begin="${pageMaker.startPage}" end="${pageMaker.endPage}" var="idx">--%>
 <%--                                    <li <c:out value="${pageMaker.criteria.page == idx ? 'class=active' : ''}"/>>--%>
-<%--&lt;%&ndash;                                            <a href="${path}/article/listPaging?page=${idx}">${idx}</a>&ndash;%&gt;--%>
-<%--&lt;%&ndash;                                            <a href="${path}/article/paging/list${pageMaker.makeQuery(${idx})}">${idx}</a>&ndash;%&gt;--%>
-<%--&lt;%&ndash;                                        <a href="${path}/article/paging/list?page=${idx}">${idx}</a>&ndash;%&gt;--%>
+<%--&lt;%&ndash;                                            <a href="${pageContext.request.contextPath}/article/listPaging?page=${idx}">${idx}</a>&ndash;%&gt;--%>
+<%--&lt;%&ndash;                                            <a href="${pageContext.request.contextPath}/article/paging/list${pageMaker.makeQuery(${idx})}">${idx}</a>&ndash;%&gt;--%>
+<%--&lt;%&ndash;                                        <a href="${pageContext.request.contextPath}/article/paging/list?page=${idx}">${idx}</a>&ndash;%&gt;--%>
 <%--                                        <a href="${idx}">${idx}</a>--%>
 <%--                                    </li>--%>
 <%--                                </c:forEach>--%>
 <%--                                <c:if test="${pageMaker.next && pageMaker.endPage > 0}">--%>
-<%--                                    &lt;%&ndash;<li><a href="${path}/article/listPaging?page=${pageMaker.endPage + 1}">다음</a></li>&ndash;%&gt;--%>
-<%--                                    &lt;%&ndash;<li><a href="${path}/article/listPaging?${pageMaker.makeQuery(pageMaker.endPage + 1)}">다음</a></li>&ndash;%&gt;--%>
+<%--                                    &lt;%&ndash;<li><a href="${pageContext.request.contextPath}/article/listPaging?page=${pageMaker.endPage + 1}">다음</a></li>&ndash;%&gt;--%>
+<%--                                    &lt;%&ndash;<li><a href="${pageContext.request.contextPath}/article/listPaging?${pageMaker.makeQuery(pageMaker.endPage + 1)}">다음</a></li>&ndash;%&gt;--%>
 <%--                                    <li><a href="${pageMaker.endPage + 1}">다음</a></li>--%>
 <%--                                </c:if>--%>
 <%--                            </ul>--%>
@@ -102,15 +102,15 @@
                         <div class="text-center">
                             <ul class="pagination">
                                 <c:if test="${pageMaker.prev}">
-                                    <li><a href="${path}/article/paging/search/list${pageMaker.makeSearch(pageMaker.startPage - 1)}">이전</a></li>
+                                    <li><a href="${pageContext.request.contextPath}/article/paging/search/list${pageMaker.makeSearch(pageMaker.startPage - 1)}">이전</a></li>
                                 </c:if>
                                 <c:forEach begin="${pageMaker.startPage}" end="${pageMaker.endPage}" var="idx">
                                     <li <c:out value="${pageMaker.criteria.page == idx ? 'class=active' : ''}"/>>
-                                        <a href="${path}/article/paging/search/list${pageMaker.makeSearch(idx)}">${idx}</a>
+                                        <a href="${pageContext.request.contextPath}/article/paging/search/list${pageMaker.makeSearch(idx)}">${idx}</a>
                                     </li>
                                 </c:forEach>
                                 <c:if test="${pageMaker.next && pageMaker.endPage > 0}">
-                                    <li><a href="${path}/article/paging/search/list?${pageMaker.makeSearch(pageMaker.endPage + 1)}">다음</a></li>
+                                    <li><a href="${pageContext.request.contextPath}/article/paging/search/list?${pageMaker.makeSearch(pageMaker.endPage + 1)}">다음</a></li>
                                 </c:if>
                             </ul>
                         </div>

@@ -21,27 +21,22 @@ public class ReplyServiceImpl implements ReplyService {
     }
 
     @Override
-    public List<ReplyVO> getReplies(Integer articleNo) throws Exception {
-        return replyDAO.list(articleNo);
-    }
-
-    @Override
     public List<ReplyVO> list(Integer articleNo) throws Exception {
         return replyDAO.list(articleNo);
     }
 
     @Override
-    public void addReply(ReplyVO replyVO) throws Exception {
+    public void create(ReplyVO replyVO) throws Exception {
         replyDAO.create(replyVO);
     }
 
     @Override
-    public void modifyReply(ReplyVO replyVO) throws Exception {
+    public void update(ReplyVO replyVO) throws Exception {
         replyDAO.update(replyVO);
     }
 
     @Override
-    public void removeReply(Integer replyNo) throws Exception {
+    public void delete(Integer replyNo) throws Exception {
         replyDAO.delete(replyNo);
     }
 
@@ -54,6 +49,5 @@ public class ReplyServiceImpl implements ReplyService {
     public int countReplies(Integer articleNo) throws Exception {
         return replyDAO.countReplies(articleNo);
     }
-
 }
 

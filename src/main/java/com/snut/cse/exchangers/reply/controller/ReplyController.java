@@ -28,7 +28,7 @@ public class ReplyController {
     public ResponseEntity<String> register(@RequestBody ReplyVO replyVO) {
         ResponseEntity<String> entity = null;
         try {
-            replyService.addReply(replyVO);
+            replyService.create(replyVO);
             entity = new ResponseEntity<>("regSuccess", HttpStatus.OK);
         } catch (Exception e) {
             e.printStackTrace();
@@ -41,7 +41,7 @@ public class ReplyController {
     public ResponseEntity<List<ReplyVO>> list(@PathVariable("articleNo") Integer articleNo) {
         ResponseEntity<List<ReplyVO>> entity = null;
         try {
-            entity = new ResponseEntity<>(replyService.getReplies(articleNo), HttpStatus.OK);
+            entity = new ResponseEntity<>(replyService.list(articleNo), HttpStatus.OK);
         } catch (Exception e) {
             e.printStackTrace();
             entity = new ResponseEntity<>(HttpStatus.BAD_REQUEST);
@@ -54,7 +54,7 @@ public class ReplyController {
         ResponseEntity<String> entity = null;
         try {
             replyVO.setReplyNo(replyNo);
-            replyService.modifyReply(replyVO);
+            replyService.update(replyVO);
             entity = new ResponseEntity<>("modSuccess", HttpStatus.OK);
         } catch (Exception e) {
             e.printStackTrace();
@@ -67,7 +67,7 @@ public class ReplyController {
     public ResponseEntity<String> delete(@PathVariable("replyNo") Integer replyNo) {
         ResponseEntity<String> entity = null;
         try {
-            replyService.removeReply(replyNo);
+            replyService.delete(replyNo);
             entity = new ResponseEntity<>("delSuccess", HttpStatus.OK);
         } catch (Exception e) {
             e.printStackTrace();
@@ -110,9 +110,5 @@ public class ReplyController {
         return entity;
     }
 
-    @RequestMapping("/test")
-    public String replyAjaxTest() {
-        return "/tutorial/reply_test";
-    }
 
 }

@@ -7,15 +7,13 @@ import java.util.List;
 
 public interface ReplyService {
 
-    List<ReplyVO> getReplies(Integer articleNo) throws Exception;
-
     List<ReplyVO> list(Integer articleNo) throws Exception;
 
-    void addReply(ReplyVO replyVO) throws Exception;
+    void create(ReplyVO replyVO) throws Exception;
 
-    void modifyReply(ReplyVO replyVO) throws Exception;
+    void update(ReplyVO replyVO) throws Exception;
 
-    void removeReply(Integer replyNo) throws Exception;
+    void delete(Integer replyNo) throws Exception;
 
     List<ReplyVO> getRepliesPaging(Integer articleNo, Criteria criteria) throws Exception;
 
