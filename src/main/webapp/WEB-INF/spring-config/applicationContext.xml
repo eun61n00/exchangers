@@ -11,33 +11,30 @@
 		http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-3.1.xsd
 		http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop-3.1.xsd">
 
-    <!--DataSource default 설정-->
-<!--    <bean id="dataSource" class="org.springframework.jdbc.datasource.DriverManagerDataSource">-->
-<!--    <property name="driverClassName" value="com.mysql.jdbc.Driver"/>-->
-<!--    <property name="url" value="jdbc:mysql://127.0.0.1:3306/spring_ex?useSSL=false"/>-->
-<!--    <property name="username" value="eunbin"/>-->
-<!--    <property name="password" value="P@ssw0rd"/>-->
-<!--    </bean>-->
-
-    <!--DataSource log4jdbc-log4j2 설정-->
-    <bean id="dataSource" class="org.springframework.jdbc.datasource.DriverManagerDataSource">
+    <bean id="hikariConfig" class="com.zaxxer.hikari.HikariConfig">
         <property name="driverClassName" value="net.sf.log4jdbc.sql.jdbcapi.DriverSpy"/>
-        <property name="url" value="jdbc:log4jdbc:mysql://127.0.0.1:3306/exchangers?useSSL=false"/>
-        <property name="username" value="root"/>
+        <property name="jdbcUrl" value="jdbc:log4jdbc:mysql://localhost:3306/exchangers"/>
+        <property name="username" value="exchangers_admin"/>
         <property name="password" value="P@ssw0rd"/>
     </bean>
 
-    <!--SqlSessionFactory 설정 : dataSource를 참조, mybatis-config.xml 경로설정-->
+    <!--HikariCP Configuration-->
+    <bean id="dataSource" class="com.zaxxer.hikari.HikariDataSource" destroy-method="close">
+        <constructor-arg ref="hikariConfig" />
+    </bean>
+
     <bean id="sqlSessionFactory" class="org.mybatis.spring.SqlSessionFactoryBean">
         <property name="dataSource" ref="dataSource"/>
         <property name="configLocation" value="classpath:/mybatis-config.xml"/>
-        <property name="mapperLocations" value="classpath:mappers/**/*Mapper.xml"/>
     </bean>
 
-    <bean id="sqlSession" class="org.mybatis.spring.SqlSessionTemplate" destroy-method="clearCache">
-        <constructor-arg name="sqlSessionFactory" ref="sqlSessionFactory"/>
+    <!-- viewResolver 설정 -->
+    <bean class="org.springframework.web.servlet.view.InternalResourceViewResolver">
+        <property name="prefix" value="/WEB-INF/views/"/>
+        <property name="suffix" value=".jsp"/>
     </bean>
 
-    <context:component-scan base-package="com.snut.cse.exchangers"/>
+    <context:component-scan base-package="com.snut.cse.exchangers" />
+    <mybatis-spring:scan base-package="com.snut.cse.exchangers.board.mapper"/>
 
 </beans>

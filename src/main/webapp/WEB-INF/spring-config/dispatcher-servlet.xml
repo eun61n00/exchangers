@@ -7,14 +7,16 @@
 		http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
 		http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd">
 
-<!--애너테이션 인식-->
+    <!--애너테이션 인식-->
     <annotation-driven/>
 
     <!--정적자원 매핑-->
     <resources mapping="/resources/**" location="/resources/" />
-    <resources mapping="/bower_components/**" location="/resources/bower_components/"/>
-    <resources mapping="/plugins/**" location="/resources/plugins/"/>
-    <resources mapping="/dist/**" location="/resources/dist/"/>
+    <resources mapping="/css/**" location="/resources/css/"/>
+    <resources mapping="/img/**" location="/resources/img/"/>
+    <resources mapping="/js/**" location="/resources/js/"/>
+    <resources mapping="/scss/**" location="/resources/scss/"/>
+    <resources mapping="/vendor/**" location="/resources/vendor/"/>
 
     <!--viewResolver 설정-->
     <beans:bean class="org.springframework.web.servlet.view.InternalResourceViewResolver">
@@ -22,7 +24,6 @@
         <beans:property name="suffix" value=".jsp"/>
     </beans:bean>
 
-    <!--기본패키지 설정-->
-    <context:component-scan base-package="com.snut.cse.exchangers"/>
+    <context:component-scan base-package="com.snut.cse.exchangers" />
 
 </beans:beans>
