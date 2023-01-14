@@ -44,6 +44,11 @@ public class BoardServiceTest {
     }
 
     @Test
+    public void testReadAll() {
+        service.readAll().forEach(boardVO -> log.info(boardVO));
+    }
+
+    @Test
     public void testUpate() {
         BoardVO boardVO = service.read(12);
         boardVO.setContent("test modified contents I am hungry");

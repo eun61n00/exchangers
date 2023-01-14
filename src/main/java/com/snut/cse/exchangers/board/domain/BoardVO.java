@@ -15,10 +15,10 @@ public class BoardVO {
 
     private String writer;
 
-    private Date regDate;
+    private Date regdate;
 
-    private Date updateDate;
+    private Date updatedate;
 
-    private int viewCnt;
+    private int viewcnt;
 
 }

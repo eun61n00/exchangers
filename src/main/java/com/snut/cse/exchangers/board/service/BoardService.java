@@ -10,9 +10,9 @@ public interface BoardService {
 
     BoardVO read(int boardNo);
 
-    void update(BoardVO boardVO);
+    boolean update(BoardVO boardVO);
 
-    void delete(int boardNo);
+    boolean delete(int boardNo);
 
     List<BoardVO> readAll();
 
