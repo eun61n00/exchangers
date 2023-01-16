@@ -19,4 +19,8 @@ public interface BoardMapper {
 
     int delete(int board_no);
 
+    int updateViewCount(int board_no);
+
+    List<String> getCategoryList();
+
 }

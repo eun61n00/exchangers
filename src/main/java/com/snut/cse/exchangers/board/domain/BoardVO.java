@@ -13,6 +13,8 @@ public class BoardVO {
 
     private String content;
 
+    private String category;
+
     private String writer;
 
     private Date regdate;

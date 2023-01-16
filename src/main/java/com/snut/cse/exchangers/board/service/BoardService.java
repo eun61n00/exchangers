@@ -16,4 +16,8 @@ public interface BoardService {
 
     List<BoardVO> readAll();
 
+    boolean updateViewCount(int boardNo);
+
+    List<String> getCategoryList();
+
 }

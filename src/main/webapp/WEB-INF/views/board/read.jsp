@@ -1,4 +1,5 @@
-<%--
+<%@ page import="com.snut.cse.exchangers.board.mapper.BoardMapper" %>
+<%@ page import="com.snut.cse.exchangers.board.domain.BoardVO" %><%--
   Created by IntelliJ IDEA.
   User: eunbin
   Date: 2023/01/13
@@ -7,6 +8,7 @@
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 
 <!doctype html>
 <html lang="en">
@@ -42,7 +44,11 @@
 
                                 <div class="form-group">
                                     <label>Board No.</label>
-                                    <input class="form-control" name="bno" value="<c:out value="${board.board_no}" />" readonly="readonly">
+                                    <input class="form-control" name="boardNo" value="<c:out value="${board.board_no}" />" readonly="readonly">
+                                </div>
+                                <div class="form-group">
+                                    <label>Category</label>
+                                    <input class="form-control" name="category" value="<c:out value="${board.category}" />" readonly="readonly">
                                 </div>
                                 <div class="form-group">
                                     <label>Title</label>
@@ -84,8 +90,6 @@
 <a class="scroll-to-top rounded" href="#page-top">
     <i class="fas fa-angle-up"></i>
 </a>
-
-<%@include file="../include/plugin_js.jsp"%>
 
 </body>
 </html>

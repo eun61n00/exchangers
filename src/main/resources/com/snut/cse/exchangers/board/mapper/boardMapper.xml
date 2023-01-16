@@ -24,18 +24,18 @@
     </select>
 
     <insert id="insert">
-        INSERT INTO tbl_board(title, content, writer)
-        VALUES (#{title}, #{content}, #{writer})
+        INSERT INTO tbl_board(title, content, writer, category)
+        VALUES (#{title}, #{content}, #{writer}, #{category})
     </insert>
 
     <insert id="insertSelectKey" useGeneratedKeys="true" keyProperty="board_no">
-        INSERT INTO tbl_board(board_no, title, content, writer)
-        VALUES (#{board_no}, #{title}, #{content}, #{writer})
+        INSERT INTO tbl_board(board_no, title, content, writer, category)
+        VALUES (#{board_no}, #{title}, #{content}, #{writer}, #{category})
     </insert>
 
     <update id="update">
         UPDATE tbl_board
-        SET title = #{title}, content = #{content}, writer=#{writer}, updatedate=current_time
+        SET title = #{title}, content = #{content}, writer=#{writer}, category=#{category}, updatedate=current_time
         WHERE board_no = #{board_no}
     </update>
 
@@ -44,5 +44,16 @@
         FROM tbl_board
         WHERE board_no = #{board_no}
     </delete>
+
+    <update id="updateViewCount" parameterType="int">
+        UPDATE tbl_board
+        SET viewcnt = viewcnt + 1
+        WHERE board_no = #{board_no}
+    </update>
+
+    <select id="getCategoryList" resultType="BoardVO">
+        SELECT DISTINCT category
+        FROM tbl_board
+    </select>
 
 </mapper>

@@ -25,6 +25,7 @@ public class BoardServiceImpl implements BoardService {
 
     @Override
     public BoardVO read(int boardNo) {
+        boardMapper.updateViewCount(boardNo);
         return boardMapper.select(boardNo);
     }
 
@@ -41,5 +42,15 @@ public class BoardServiceImpl implements BoardService {
     @Override
     public List<BoardVO> readAll() {
         return boardMapper.selectAll();
+    }
+
+    @Override
+    public boolean updateViewCount(int boardNo) {
+        return boardMapper.updateViewCount(boardNo) == 1;
+    }
+
+    @Override
+    public List<String> getCategoryList() {
+        return boardMapper.getCategoryList();
     }
 }

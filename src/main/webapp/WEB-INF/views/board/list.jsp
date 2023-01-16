@@ -35,6 +35,15 @@
                     <div class="card-header py-3">
                         <h5 class="m-0 font-weight-bold text-primary fa-pull-left">Board</h5>
                         <button id="regBtn" name="regBtn" class="btn btn-outline-primary fa-pull-right" type="submit" onclick="location.href='/board/register'">Register new board</button>
+<%--                        <select name="category">--%>
+<%--                            <c:forEach var="i" items="${board.options}"--%>
+<%--                            <option--%>
+<%--                            <option value="전체"/>--%>
+<%--                            <option value="전체"/>--%>
+<%--                            <option value="전체"/>--%>
+<%--                            <option value="전체"/>--%>
+<%--                            <option value="전체"/>--%>
+<%--                        </select>--%>
                     </div>
                     <div class="card-body">
                         <div class="table-responsive">
