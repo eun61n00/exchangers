@@ -1,6 +1,7 @@
 package com.snut.cse.exchangers.board.service;
 
 import com.snut.cse.exchangers.board.domain.BoardVO;
+import com.snut.cse.exchangers.board.domain.Criteria;
 import com.snut.cse.exchangers.board.mapper.BoardMapper;
 import lombok.AllArgsConstructor;
 import lombok.Setter;
@@ -40,8 +41,16 @@ public class BoardServiceImpl implements BoardService {
     }
 
     @Override
-    public List<BoardVO> readAll() {
+    public List<BoardVO> getList() {
         return boardMapper.selectAll();
+    }
+
+    public List<BoardVO> getListWithPaging(Criteria criteria) {
+        return boardMapper.selectWithPaging(criteria);
+    }
+
+    public int getTotalCount() {
+        return boardMapper.getTotalCount();
     }
 
     @Override

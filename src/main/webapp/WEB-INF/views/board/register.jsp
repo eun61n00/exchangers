@@ -8,7 +8,7 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 
-<!doctype html>
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html lang="en">
 <%@include file="../include/head.jsp"%>
 <body id="page-top">
@@ -38,7 +38,7 @@
                     <div class="card-body">
                         <div class="row">
                             <div class="col-lg-12">
-                                <form action="/board/register" method="post">
+                                <form id="form" action="/board/register" method="post">
                                     <div class="form-group">
                                         <label>Title</label>
                                         <input class="form-control" name="title">
@@ -61,9 +61,13 @@
                                         <label>Writer</label>
                                         <input class="form-control" name="writer">
                                     </div>
-                                    <button data-oper="register" class="btn btn-primary" type="submit">Register</button>
-                                    <button data-oper="list" class="btn btn-outline-primary" type="submit" onclick="location.href='/board/list'">List</button>
                                 </form>
+                                <div>
+                                    <button data-operation="register" class="btn btn-primary" type="submit">Register</button>
+                                    <button data-operation="list" class="btn btn-outline-primary" type="submit">List</button>
+                                    <input type="hidden" name="pageNum" value="<c:out value="${criteria.pageNum}"/>">
+                                    <input type="hidden" name="amount" value="<c:out value="${criteria.amount}"/>">
+                                </div>
                             </div>
                         </div>
                     </div>
@@ -87,6 +91,16 @@
 </a>
 
 <%@include file="../include/plugin_js.jsp"%>
+
+<script type="text/javascript">
+    $("document").ready(function () {
+        var formObject = $('#form');
+
+        $("button[data-operation='list']").on("click", function (e) {
+            history.go(-1);
+        })
+    })
+</script>
 
 </body>
 </html>

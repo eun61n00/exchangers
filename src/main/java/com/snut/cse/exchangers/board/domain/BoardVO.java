@@ -7,7 +7,7 @@ import java.util.Date;
 @Data
 public class BoardVO {
 
-    private int board_no;
+    private int id;
 
     private String title;
 

@@ -1,6 +1,7 @@
 package com.snut.cse.exchangers.board;
 
 import com.snut.cse.exchangers.board.domain.BoardVO;
+import com.snut.cse.exchangers.board.domain.Criteria;
 import com.snut.cse.exchangers.board.mapper.BoardMapper;
 import lombok.Setter;
 import lombok.extern.log4j.Log4j;
@@ -21,6 +22,12 @@ public class BoardMapperTest {
     @Test
     public void testSelectAll() {
         boardMapper.selectAll().forEach(boardVO -> log.info(boardVO));
+    }
+
+    @Test
+    public void testSelectWithPaging() {
+        Criteria criteria = new Criteria(2, 10);
+        boardMapper.selectWithPaging(criteria).forEach(boardVO -> log.info(boardVO));
     }
 
     @Test

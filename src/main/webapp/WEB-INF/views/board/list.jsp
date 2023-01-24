@@ -8,7 +8,7 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 
-<!doctype html>
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html lang="en">
 <%@include file="../include/head.jsp"%>
 <body id="page-top">
@@ -62,8 +62,9 @@
                                 <tbody>
                                 <c:forEach items="${list}" var="board">
                                 <tr>
-                                    <td><c:out value="${board.board_no}" /></td>
-                                    <td><a href="/board/read?board_no=<c:out value="${board.board_no}" />"><c:out value="${board.title}" /></a></td>
+                                    <td><c:out value="${board.id}" /></td>
+                                    <td><a class="move_to_read" href="<c:out value="${board.id}"/>">
+                                        <c:out value="${board.title}" /></a></td>
                                     <td><c:out value="${board.writer}" /></td>
                                     <td><fmt:formatDate value="${board.regdate}" pattern="yyyy-MM-dd"/></td>
                                     <td><fmt:formatDate value="${board.updatedate}" pattern="yyyy-MM-dd"/></td>
@@ -72,6 +73,26 @@
                                 </c:forEach>
                                 </tbody>
                             </table>
+
+                            <form id="actionForm" action="/board/list" method="get">
+                                <input type="hidden" name="pageNum" value="<c:out value="${pageDTO.criteria.pageNum}"/>">
+                                <input type="hidden" name="amount" value="<c:out value="${pageDTO.criteria.amount}"/>">
+                            </form>
+
+                            <!-- Pagination -->
+                            <nav aria-label="Page navigation example">
+                                <ul class="pagination justify-content-center">
+                                    <c:if test="${pageDTO.prev}">
+                                        <li class="page-item"><a class="page-link" href="${pageDTO.startPage-1}" tabindex="-1">Previous</a></li>
+                                    </c:if>
+                                    <c:forEach var="num" begin="${pageDTO.startPage}" end="${pageDTO.endPage}">
+                                        <li class="page-item ${pageDTO.criteria.getPageNum() == num ? "active": ""}"><a class="page-link" href="${num}">${num}</a></li>
+                                    </c:forEach>
+                                    <c:if test="${pageDTO.next}">
+                                        <li class="page-item"><a class="page-link" href="${pageDTO.endPage+1}" tabindex="-1">Next</a></li>
+                                    </c:if>
+                                </ul>
+                            </nav>
 
                             <!-- Modal -->
                             <div class="modal fade" id="listModal" tabindex="-1" role="dialog" aria-labelledby="listModalLabel" aria-hidden="true">
@@ -115,35 +136,48 @@
 
 <script type="text/javascript">
     $(document).ready(function () {
-        const board_no = '<c:out value="${board_no}" />';
-        const register_result = '<c:out value="${register_result}" />';
-        const update_result = '<c:out value="${update_result}" />';
-        const delete_result = '<c:out value="${delete_result}" />';
+        const id = "<c:out value="${id}" />";
+        const msg = "<c:out value="${msg}"/>"
 
-        checkModal(register_result, update_result, delete_result, board_no);
+        checkModal(msg, id);
 
         history.replaceState({}, null, null)
 
-        function checkModal(register_result, update_result, delete_result, board_no) {
-            if (board_no === '' || history.state) {
+        function checkModal(msg, id) {
+            if (id === '' || history.state) {
                 return ;
             }
 
-            if (register_result === "success") {
+            if (msg === "register") {
                 $("#listModalLabel").html("Register Complete");
-                $(".modal-body").html("게시글 " + parseInt(board_no) + "번이 등록되었습니다.");
+                $(".modal-body").html("게시글 " + parseInt(id) + "번이 등록되었습니다.");
             }
-            else if (update_result === "success") {
+            else if (msg === "update") {
                 $("#listModalLabel").html("Update Complete");
-                $(".modal-body").html("게시글 " + parseInt(board_no) + "번이 수정되었습니다.");
+                $(".modal-body").html("게시글 " + parseInt(id) + "번이 수정되었습니다.");
             }
-            else if (delete_result === "success") {
+            else if (msg === "delete") {
                 $("#listModalLabel").html("Delete Complete");
-                $(".modal-body").html("게시글 " + parseInt(board_no) + "번이 삭제되었습니다.");
+                $(".modal-body").html("게시글 " + parseInt(id) + "번이 삭제되었습니다.");
             }
 
             $("#listModal").modal("show");
         }
+
+        var actionForm = $("#actionForm");
+
+        $(".page-item a").on("click", function(e) {
+            e.preventDefault();
+            actionForm.find("input[name='pageNum']").val($(this).attr("href"));
+            actionForm.submit();
+        })
+
+        $(".move_to_read").on("click", function(e){
+            e.preventDefault();
+            actionForm.append("<input type='hidden' name='id' value='" + $(this).attr("href") + "'>");
+            actionForm.attr("action", "/board/read");
+            actionForm.submit();
+        });
     })
 
 

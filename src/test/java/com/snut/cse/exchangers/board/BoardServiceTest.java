@@ -1,6 +1,7 @@
 package com.snut.cse.exchangers.board;
 
 import com.snut.cse.exchangers.board.domain.BoardVO;
+import com.snut.cse.exchangers.board.domain.Criteria;
 import com.snut.cse.exchangers.board.service.BoardService;
 import lombok.Setter;
 import lombok.extern.log4j.Log4j;
@@ -26,16 +27,19 @@ public class BoardServiceTest {
         assertNotNull(service);
     }
 
-
     @Test
     public void testRegister() {
-        BoardVO boardVO = new BoardVO();
-        boardVO.setTitle("new registered board");
-        boardVO.setContent("test contents - new registered board");
-        boardVO.setWriter("eunbin");
 
-        service.register(boardVO);
-        log.info(boardVO);
+        for (int i = 0; i < 100; i++) {
+            BoardVO boardVO = new BoardVO();
+            boardVO.setTitle("new registered board");
+            boardVO.setContent("test contents - new registered board");
+            boardVO.setWriter("eunbin");
+            boardVO.setCategory("기타");
+
+            service.register(boardVO);
+            log.info(boardVO);
+        }
     }
 
     @Test
@@ -44,8 +48,19 @@ public class BoardServiceTest {
     }
 
     @Test
-    public void testReadAll() {
-        service.readAll().forEach(boardVO -> log.info(boardVO));
+    public void testGetList() {
+        service.getList().forEach(boardVO -> log.info(boardVO));
+    }
+
+    @Test
+    public void testGetListWithPaging() {
+        service.getListWithPaging(new Criteria(5, 10)).forEach(boardVO -> log.info(boardVO));
+    }
+
+    @Test
+    public void testGetTotalCount() {
+        log.info(service.getTotalCount());
+
     }
 
     @Test

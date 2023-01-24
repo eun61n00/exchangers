@@ -10,7 +10,7 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 
-<!doctype html>
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html lang="en">
 <%@include file="../include/head.jsp"%>
 <body id="page-top">
@@ -36,15 +36,13 @@
                 <div class="card shadow mb-4">
                     <div class="card-header py-3">
                         <h6 class="m-0 font-weight-bold text-primary">묻고 답하기</h6>
-
                     </div>
                     <div class="card-body">
                         <div class="row">
                             <div class="col-lg-12">
-
                                 <div class="form-group">
                                     <label>Board No.</label>
-                                    <input class="form-control" name="boardNo" value="<c:out value="${board.board_no}" />" readonly="readonly">
+                                    <input class="form-control" name="boardNo" value="<c:out value="${board.id}" />" readonly="readonly">
                                 </div>
                                 <div class="form-group">
                                     <label>Category</label>
@@ -62,13 +60,13 @@
                                     <label>Writer</label>
                                     <input class="form-control" name="writer" value="<c:out value="${board.writer}" />" readonly="readonly">
                                 </div>
-                                <button data-oper="update" class="btn btn-primary" onclick="location.href='/board/update?board_no=<c:out value="${board.board_no}"/>'">Modify</button>
-                                <button data-oper="list" class="btn btn-outline-primary" onclick="location.href='/board/list'">List</button>
-
-                                <form id="operForm" action="/board/update" method="get">
-                                    <input type="hidden" id="bno" name="bno" value="<c:out value="${board.board_no}"/>">
+                                <button data-operation="update" class="btn btn-primary">Modify</button>
+                                <button data-operation="list" class="btn btn-outline-primary">List</button>
+                                <form id="operationForm" action="/board/update" method="get">
+                                    <input type="hidden" id="id" name="id" value="<c:out value="${board.id}"/>">
+                                    <input type="hidden" name="pageNum" value="<c:out value="${criteria.pageNum}"/>">
+                                    <input type="hidden" name="amount" value="<c:out value="${criteria.amount}"/>">
                                 </form>
-
                             </div>
                         </div>
                     </div>
@@ -90,6 +88,23 @@
 <a class="scroll-to-top rounded" href="#page-top">
     <i class="fas fa-angle-up"></i>
 </a>
+
+<%@include file="../include/plugin_js.jsp"%>
+
+<script type="text/javascript">
+    $(document).ready(function () {
+        var operationForm = $("#operationForm");
+
+        $("button[data-operation='update']").on("click", function (e) {
+            operationForm.attr("action", "/board/update").submit();
+        });
+
+        $("button[data-operation='list']").on("click", function (e) {
+            operationForm.find("#id").remove();
+            operationForm.attr("action", "/board/list").submit();
+        });
+    });
+</script>
 
 </body>
 </html>

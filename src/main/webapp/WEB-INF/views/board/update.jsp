@@ -8,7 +8,7 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 
-<!doctype html>
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html lang="en">
 <%@include file="../include/head.jsp"%>
 <body id="page-top">
@@ -38,10 +38,10 @@
                     <div class="card-body">
                         <div class="row">
                             <div class="col-lg-12">
-                                <form action="/board/update" method="post">
+                                <form role="form" action="/board/update" method="post">
                                     <div class="form-group">
                                         <label>Board No.</label>
-                                        <input class="form-control" name="bno" value="<c:out value="${board.board_no}" />" readonly="readonly">
+                                        <input class="form-control" name="id" value="<c:out value="${board.id}" />" readonly="readonly">
                                     </div>
                                     <div class="form-group">
                                         <label>Title</label>
@@ -55,14 +55,14 @@
                                         <label>Writer</label>
                                         <input class="form-control" name="writer" value="<c:out value="${board.writer}" />">
                                     </div>
-                                    <button data-oper="update" class="btn btn-primary" type="submit" formmethod="post">Modify</button>
-                                    <button data-oper="delete" class="btn btn-danger" type="submit" formmethod="post" onclick="javascript: form.action='/board/delete?board_no=<c:out value="${board.board_no}" />'">Delete</button>
-                                    <button data-oper="list" class="btn btn-outline-primary" type="submit" onclick="location.href='/board/list'">List</button>
-
-                                    <form id="operForm" action="/board/update" method="get">
-                                        <input type="hidden" id="board_no" name="board_no" value="<c:out value="${board.board_no}"/>">
-                                    </form>
+                                    <button data-operation="update" class="btn btn-primary" type="submit">Modify</button>
+                                    <button data-operation="delete" class="btn btn-danger">Delete</button>
+                                    <button data-operation="list" class="btn btn-outline-primary" type="submit">List</button>
+                                    <input type="hidden" id="id" name="id" value="<c:out value="${board.id}"/>">
+                                    <input type="hidden" name="pageNum" value="<c:out value="${criteria.pageNum}"/>">
+                                    <input type="hidden" name="amount" value="<c:out value="${criteria.amount}"/>">
                                 </form>
+
                             </div>
                         </div>
                     </div>
@@ -86,6 +86,21 @@
 </a>
 
 <%@include file="../include/plugin_js.jsp"%>
+
+<script type="text/javascript">
+    $(document).ready(function() {
+        var operationForm = $("form[role='form']");
+
+        $("button[data-operation='delete']").on("click", function(e) {
+            operationForm.attr("action", "/board/delete");
+            operationForm.submit();
+        })
+
+        $("button[data-operation='list']").on("click", function(e) {
+            self.location="/board/list?pageNum=${criteria.pageNum}&amount=${criteria.amount}";
+        })
+    });
+</script>
 
 </body>
 </html>
