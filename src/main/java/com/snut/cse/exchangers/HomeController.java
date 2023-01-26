@@ -1,16 +1,15 @@
 package com.snut.cse.exchangers;
 
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
+import lombok.extern.log4j.Log4j;
 import org.springframework.stereotype.Controller;
-import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.GetMapping;
 
+@Log4j
 @Controller
 public class HomeController {
-    @RequestMapping(method = RequestMethod.GET, value="/")
+    @GetMapping("/")
     public String home() {
         return "home";
     }
+
 }
