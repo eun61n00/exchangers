@@ -35,6 +35,21 @@
     <link href="<c:out value="${path}"/>/vendor/datatables/dataTables.bootstrap4.min.css" rel="stylesheet">
 
     <link href="<c:out value="${path}"/>/css/button.css" rel="stylesheet">
+    <link href="<c:out value="${path}"/>/css/font.css" rel="stylesheet">
+
+    <style>
+        html,body {
+            height: 100%;
+        }
+
+        #content-wrapper{height: 100%;}
+
+        #wrapper{height: 100%}
+
+        .wrapper{min-height: 100%;}
+
+
+    </style>
 
 </head>
 
