@@ -8,6 +8,7 @@
             http://www.springframework.org/schema/beans/spring-beans.xsd">
     <bean id="exchangersAccessDenied" class="com.snut.cse.exchangers.security.ExchangersAccessDeniedHandler"/>
     <bean id="loginSuccessHandler" class="com.snut.cse.exchangers.security.LoginSuccessHandler"/>
+    <bean id="bcryptPasswordEncoder" class="org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder"/>
 
     <security:http auto-config="true" use-expressions="true">
 
@@ -36,7 +37,12 @@
 <!--                <security:user name="member" password="{noop}member" authorities="ROLE_MEMBER"/>-->
 <!--                <security:user name="admin" password="{noop}admin" authorities="ROLE_MEMBER, ROLE_ADMIN"/>-->
 <!--            </security:user-service>-->
-            <security:jdbc-user-service data-source-ref="dataSource"/>
+            <security:jdbc-user-service
+                    data-source-ref="dataSource"
+                    users-by-username-query="SELECT id, password, enabled FROM tbl_user WHERE id = ?"
+                    authorities-by-username-query="SELECT id, auth FROM tbl_user_auth WHERE id = ?"
+            />
+            <security:password-encoder ref="bcryptPasswordEncoder"/>
         </security:authentication-provider>
     </security:authentication-manager>
 
