@@ -55,13 +55,6 @@
                                             </div>
                                         </div>
                                         <button class="btn btn-primary btn-user btn-block" type="subit">Login</button>
-<%--                                        <hr>--%>
-<%--                                        <a href="index.html" class="btn btn-google btn-user btn-block">--%>
-<%--                                            <i class="fab fa-google fa-fw"></i> Login with Google--%>
-<%--                                        </a>--%>
-<%--                                        <a id="kako-login-btn" href="javascript:loginWithKakao()" class="btn btn-kakao btn-user btn-block">--%>
-<%--                                            <i src="/img/kakao.svg"></i> Login with Kakao--%>
-<%--                                        </a>--%>
                                         <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}" />
                                     </form>
                                     <hr>
@@ -95,46 +88,8 @@
 
 <%@include file="../include/plugin_js.jsp"%>
 
-<script src="https://t1.kakaocdn.net/kakao_js_sdk/2.1.0/kakao.min.js"
-        integrity="sha384-dpu02ieKC6NUeKFoGMOKz6102CLEWi9+5RQjWSV0ikYSFFd8M3Wp2reIcquJOemx" crossorigin="anonymous"></script>
-<script>
-    Kakao.init('99b09a2becb70c7132217259628c4f68'); // 사용하려는 앱의 JavaScript 키 입력
-</script>
 
 <p id="token-result"></p>
-
-<script>
-    function loginWithKakao() {
-        Kakao.Auth.authorize({
-            redirectUri: 'http://localhost:8080/user/kakao-login',
-        });
-    }
-
-    // 아래는 데모를 위한 UI 코드입니다.
-    displayToken()
-    function displayToken() {
-        var token = getCookie('authorize-access-token');
-
-        if(token) {
-            Kakao.Auth.setAccessToken(token);
-            Kakao.Auth.getStatusInfo()
-                .then(function(res) {
-                    if (res.status === 'connected') {
-                        document.getElementById('token-result').innerText
-                            = 'login success, token: ' + Kakao.Auth.getAccessToken();
-                    }
-                })
-                .catch(function(err) {
-                    Kakao.Auth.setAccessToken(null);
-                });
-        }
-    }
-
-    function getCookie(name) {
-        var parts = document.cookie.split(name + '=');
-        if (parts.length === 2) { return parts[1].split(';')[0]; }
-    }
-</script>
 
 <style>
     .btn-kakao{color:#3C1E1E;background-color:#FFEC42;border-color:#FFDE00;}

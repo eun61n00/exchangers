@@ -2,7 +2,6 @@ package com.snut.cse.exchangers.board.mapper;
 
 import com.snut.cse.exchangers.board.domain.BoardVO;
 import com.snut.cse.exchangers.board.domain.Criteria;
-import org.apache.ibatis.annotations.Select;
 
 import java.util.List;
 

@@ -4,12 +4,14 @@ import com.snut.cse.exchangers.board.domain.BoardVO;
 import com.snut.cse.exchangers.board.domain.Criteria;
 import com.snut.cse.exchangers.board.domain.PageDTO;
 import com.snut.cse.exchangers.board.service.BoardService;
+import com.snut.cse.exchangers.user.domain.KakaoUserDTO;
 import lombok.AllArgsConstructor;
 import lombok.extern.log4j.Log4j;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
+import org.springframework.web.servlet.support.RequestContextUtils;
 
 import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
@@ -24,15 +26,15 @@ public class BoardController {
     private BoardService boardService;
 
     @GetMapping("/list")
-    public void list(Criteria criteria, Model model){
+    public void list(Criteria criteria, Model model, HttpServletRequest request){
         int total;
         total = boardService.getTotalCount();
         log.info("========= list (criteria: " + criteria + ") ==========");
         criteria.setOffset((criteria.getPageNum() - 1) * criteria.getAmount());
         model.addAttribute("list", boardService.getListWithPaging(criteria));
         model.addAttribute("pageDTO", new PageDTO(criteria, total));
-        log.info(new PageDTO(criteria, 314));
-//        model.addAttribute("categories", boardService.getCategoryList());
+        KakaoUserDTO kakaoUserDTO = (KakaoUserDTO) RequestContextUtils.getInputFlashMap(request);
+        model.addAttribute("kakaoUserDTO", kakaoUserDTO);
     }
 
     @GetMapping("/read")

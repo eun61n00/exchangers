@@ -15,8 +15,6 @@
 
 <!-- Page Wrapper -->
 <div id="wrapper">
-    <%@include file="../include/sidebar.jsp"%>
-
     <!-- Content Wrapper -->
     <div id="content-wrapper" class="d-flex flex-column">
 
@@ -29,7 +27,6 @@
                 <!-- Page Heading -->
                 <h1 class="h3 mb-2 text-gray-800">Board</h1>
                 <p class="mb-4">교환학생 관련 정보를 묻고 답하는 게시판입니다.</p>
-
                 <!-- DataTales Example -->
                 <div class="card shadow mb-4">
                     <div class="card-header py-3">

@@ -37,5 +37,6 @@
 
     <context:component-scan base-package="com.snut.cse.exchangers" />
     <mybatis-spring:scan base-package="com.snut.cse.exchangers.board.mapper"/>
+    <mybatis-spring:scan base-package="com.snut.cse.exchangers.user.mapper"/>
 
 </beans>

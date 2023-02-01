@@ -6,8 +6,8 @@ import java.util.HashMap;
 
 public interface UserService {
 
-    String getAccessToken(String code);
+    void insertUserInfo(KakaoUserDTO kakaoUserDTO);
 
-    KakaoUserDTO getUserInfo(String accessToken);
+    KakaoUserDTO getUserInfo(String kakaoEmail);
 
 }
