@@ -1,6 +1,8 @@
 package com.snut.cse.exchangers.user.service;
 
+import com.snut.cse.exchangers.user.domain.AuthVO;
 import com.snut.cse.exchangers.user.domain.KakaoUserDTO;
+import com.snut.cse.exchangers.user.domain.UserDTO;
 import com.snut.cse.exchangers.user.mapper.UserMapper;
 import lombok.AllArgsConstructor;
 import lombok.Setter;
@@ -16,13 +18,25 @@ public class UserServiceImpl implements  UserService {
     @Setter(onMethod_ = {@Autowired})
     private UserMapper userMapper;
 
+
     @Override
-    public void insertUserInfo(KakaoUserDTO kakaoUserDTO) {
-        userMapper.insert(kakaoUserDTO);
+    public void insertUserInfo(UserDTO userDTO) {
+        userMapper.insertUser(userDTO);
     }
 
     @Override
-    public KakaoUserDTO getUserInfo(String kakaoEmail) {
-        return userMapper.select(kakaoEmail);
+    public UserDTO getUserInfo(String userEmail) {
+        return userMapper.selectUser(userEmail);
     }
+
+    @Override
+    public void insertKakaoUserInfo(KakaoUserDTO kakaoUserDTO) {
+        userMapper.insertKakaoUser(kakaoUserDTO);
+    }
+
+    @Override
+    public KakaoUserDTO getKakaoUserInfo(String kakaoEmail) {
+        return userMapper.selectKakaoUser(kakaoEmail);
+    }
+
 }

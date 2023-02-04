@@ -1,11 +1,11 @@
 package com.snut.cse.exchangers.user.domain;
 
-import lombok.Data;
+import lombok.Getter;
 
-@Data
+@Getter
 public class AuthVO {
 
-    private String id;
-    private String auth;
+    private String email;
+    private String name;
 
 }
