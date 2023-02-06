@@ -34,11 +34,13 @@
                             <div class="text-center">
                                 <h1 style="font-family: RixInooAriDuriR; color: #2e59d9; align-content: center">EXCHANGERS</h1>
                                 <hr/>
-                                <c:out value="${kakaoName}"/>님 안녕하세요!
+                                <c:out value="${sessionScope.userName}"/>님 안녕하세요!
                                 <p></p>
                                 <button type="submit" onclick="location.href='/board/list'" class="form-control form-control-user btn-outline-primary btn-xl">정보 공유 게시판</button>
                                 <p></p>
-                                <button type="submit" class="form-control form-control-user btn-outline-primary btn-xl">Logout</button>
+                                <button type="submit" onclick="location.href='/currency/xml'" class="form-control form-control-user btn-outline-primary btn-xl">실시간 환율</button>
+                                <p></p>
+                                <button type="submit" onclick="location.href='/user/logout'" class="form-control form-control-user btn-outline-primary btn-xl">Logout</button>
                             </div>
                         </div>
                     </div>

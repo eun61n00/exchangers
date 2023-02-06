@@ -40,12 +40,12 @@
                                     <form class="user" action="/login" method="post">
                                         <div class="form-group">
                                             <input class="form-control form-control-user"
-                                                   name="userName" aria-describedby="emailHelp" value="admin"
+                                                   name="userEmail" aria-describedby="emailHelp"
                                                    placeholder="Enter Email Address...">
                                         </div>
                                         <div class="form-group">
                                             <input type="password" class="form-control form-control-user"
-                                                   name="userPassword" placeholder="Password" value="admin">
+                                                   name="userPassword" placeholder="Password">
                                         </div>
                                         <div class="form-group">
                                             <div class="custom-control custom-checkbox small">

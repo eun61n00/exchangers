@@ -32,7 +32,7 @@
         </nav>
 
         <a class="nav-link dropdown-toggle" href="/user/mypage" id="userDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-            <c:out value="${sessionScope.kakaoName}"/>님
+            <c:out value="${sessionScope.userName}"/>님
 <%--            <span class="mr-2 d-none d-lg-inline text-gray-600 small">Douglas McGee</span>--%>
 <%--            <img class="img-profile rounded-circle" src="img/undraw_profile.svg">--%>
         </a>

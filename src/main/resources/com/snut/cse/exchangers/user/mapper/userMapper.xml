@@ -4,14 +4,26 @@
 <mapper
         namespace="com.snut.cse.exchangers.user.mapper.UserMapper">
 
-    <insert id="insert">
-        INSERT INTO tbl_user(email, name) VALUES(#{kakaoEmail}, #{kakaoName})
+    <insert id="insertKakaoUser">
+        INSERT INTO tbl_kakao_user(email, name)
+        VALUES (#{email}, #{name})
     </insert>
 
-    <select id="select" resultType="KakaoUserDTO">
-        SELECT email, name, regdate, updatedate, enabled
+    <select id="selectKakaoUser" resultType="KakaoUserDTO">
+        SELECT *
+        FROM tbl_kakao_user
+        WHERE email=#{email}
+    </select>
+
+    <insert id="insertUser">
+        INSERT INTO  tbl_user(email, password, name)
+        VALUES (#{email}, #{password}, #{name})
+    </insert>
+
+    <select id="selectUser" resultType="UserDTO">
+        SELECT *
         FROM tbl_user
-        WHERE email=#{kakaoEmail};
+        WHERE email=#{email}
     </select>
 
 </mapper>

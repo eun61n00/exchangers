@@ -20,6 +20,6 @@
 <!-- Page level plugins -->
 <script src="<c:out value="${path}"/>/vendor/chart.js/Chart.js"></script>
 
-<!-- Page level custom scripts -->
-<script src="<c:out value="${path}"/>/js/demo/chart-area-demo.js"></script>
-<script src="<c:out value="${path}"/>/js/demo/chart-pie-demo.js"></script>
+<%--<!-- Page level custom scripts -->--%>
+<%--<script src="<c:out value="${path}"/>/js/demo/chart-area-demo.js"></script>--%>
+<%--<script src="<c:out value="${path}"/>/js/demo/chart-pie-demo.js"></script>--%>

@@ -1,5 +1,6 @@
 package com.snut.cse.exchangers.user;
 
+import com.snut.cse.exchangers.user.domain.KakaoUserDTO;
 import com.snut.cse.exchangers.user.service.UserService;
 import lombok.Setter;
 import lombok.extern.log4j.Log4j;
@@ -27,7 +28,8 @@ public class UserServiceTest {
 
     @Test
     public void testGetUserInfo() {
-        log.info(userService.getUserInfo("8633hghg@naver.com"));
+        KakaoUserDTO user = userService.getKakaoUserInfo("8633hghg@naver.com");
+        log.info(user);
     }
 
 }

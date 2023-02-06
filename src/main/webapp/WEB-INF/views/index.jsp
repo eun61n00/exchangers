@@ -41,8 +41,8 @@
                                 <p></p>
                                 <a href="javascript:loginWithKakao();"><img src="resources/img/kakao_login_medium_wide.png"/></a>
                                 <form id="kakaoLoginForm" name="kakaoLoginForm" method="post" action="/user/kakao-login">
-                                    <input type="hidden" id="kakaoEmail" name="kakaoEmail"/>
-                                    <input type="hidden" id="kakaoName" name="kakaoName"/>
+                                    <input type="hidden" id="kakaoEmail" name="email"/>
+                                    <input type="hidden" id="kakaoName" name="name"/>
                                 </form>
                             </div>
                         </div>

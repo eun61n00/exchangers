@@ -41,6 +41,16 @@
         <url-pattern>/</url-pattern>
     </servlet-mapping>
 
+<!--    <servlet>-->
+<!--        <servlet-name>currencyServlet</servlet-name>-->
+<!--        <servlet-class>com.snut.cse.exchangers.currency.CurrencyXmlServlet</servlet-class>-->
+<!--    </servlet>-->
+
+<!--    <servlet-mapping>-->
+<!--        <servlet-name>currencyServlet</servlet-name>-->
+<!--        <url-pattern>/currency/xml</url-pattern>-->
+<!--    </servlet-mapping>-->
+
     <filter>
         <filter-name>encoding</filter-name>
         <filter-class>org.springframework.web.filter.CharacterEncodingFilter</filter-class>
@@ -66,7 +76,7 @@
     </filter-mapping>
 
     <session-config>
-        <session-timeout>10000</session-timeout>
+        <session-timeout>-1</session-timeout>
     </session-config>
 
 </web-app>

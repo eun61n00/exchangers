@@ -6,6 +6,7 @@
     <typeAliases>
         <typeAlias type="com.snut.cse.exchangers.board.domain.BoardVO" alias="BoardVO"/>
         <typeAlias type="com.snut.cse.exchangers.user.domain.KakaoUserDTO" alias="KakaoUserDTO"/>
+        <typeAlias type="com.snut.cse.exchangers.user.domain.UserDTO" alias="UserDTO"/>
     </typeAliases>
 
 </configuration>

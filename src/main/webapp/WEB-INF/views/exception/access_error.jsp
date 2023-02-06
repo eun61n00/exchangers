@@ -11,7 +11,7 @@
 <%@include file="../include/head.jsp"%>
 <body>
 <div id="wrapper">
-    <%@include file="../include/sidebar.jsp"%>
+<%--    <%@include file="../include/sidebar.jsp"%>--%>
 
     <!-- Content Wrapper -->
     <div id="content-wrapper" class="d-flex flex-column">
